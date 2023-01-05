@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="BugetApp">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,22 +10,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <script src="app.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ 
+   
 </head>
-<body>
+<body ng-controller="BugetController">
+
     <header class="header">
         <h3>BUGET CALCULATOR</h3>
     </header>
     <div class="display">
-        <h2>1000</h2>
+
+        <h2>{{total}} Birr</h2>
     </div>
     <div class="form">
-        <input type="text" placeholder="Description">
-        <input type="number" placeholder="Amount">
-        <select name="type" id="type">
+        <input ng-model="newBuget.description" type="text" placeholder="Description">
+        <input ng-model="newBuget.amount" type="number" placeholder="Amount">
+        <select ng-model="newBuget.type" name="type" id="type">
             <option value="income">Income</option>
             <option value="expense">Expense</option>
         </select>
-        <button>Add</button>
+        <button ng-click="addBuget()">Add</button>
         
     </div>
     <hr></hr>
@@ -33,18 +38,17 @@
         <div class="income">
             
             <h3>Income</h3>
-            <div class="card"><span>bla bla</span> <span class="amount" >100</span></div>
-            <div class="card"><span>bla bla</span> <span class="amount" >100</span></div>
-            <div class="card"><span>bla bla</span> <span class="amount" >100</span></div>
+            <div ng-repeat="buget in bugetlist | filter :type='income'" class="card"><span>{{buget.description}}</span> <span class="amount" >{{buget.amount}}</span></div>
+            
         </div>
         <div class="expense">
             <h3>Expense</h3>
            
-            <div class="card"><span>bla bla</span> <span class="amount" >100</span></div>
-            <div class="card"><span>bla bla</span> <span class="amount" >100</span></div>
-            <div class="card"><span>bla bla</span> <span class="amount" >100</span></div>
+            <div ng-repeat="buget in bugetlist | filter :type='expense'" class="card"><span>{{buget.description}}</span> <span class="amount" >{{buget.amount}}</span></div>
         </div>
 
     </div>
+    <div class="chart" id="piechart" style="width: 900px; height: 500px;"></div>
+    
 </body>
 </html>

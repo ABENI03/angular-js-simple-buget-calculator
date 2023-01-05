@@ -68,7 +68,7 @@ body {
 }
 .card .amount {
     margin-left: 160px;
-    background-color: rgb(80, 114, 80);
+    
     color: white;
     padding: 5px;
     
@@ -79,8 +79,8 @@ body {
    
    
 }
-.income .card {
-
+.income .card .amount{
+    background-color: rgb(80, 114, 80);
 }
 .expense {
     color: red;
@@ -88,6 +88,13 @@ body {
    
     
 }
-.expense .card {
+.expense .card .amount{
+    background-color: rgb(218, 108, 108)
+}
 
+.chart{
+    margin-left: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
